@@ -3,7 +3,9 @@
   "description": "Chinese Pinyin package for >=php7.1",
   "type": "1",
   "require": {
-    "php": ">=7.1"
+    "php": ">=7.1",
+    "ext-json": "*",
+    "ext-mbstring": "*"
   },
   "keywords": [
     "chinese",

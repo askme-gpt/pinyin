@@ -1,18 +1,23 @@
+# 来源
+这个包来源于：https://github.com/overtrue/pinyin ，为啥要做同个功能的轮子呢？因为源包不支持php8以前的版本，我有些老项目，升级比较麻烦，因此把代码稍微改了一下，以便php7.1以后的版本都能用。
+# 主要改动
+-- str_contains ：在 PHP 7.1 中，str_contains 函数是不可用的，因为它是在 PHP 8.0 中引入的。
+-- fn ($pinyin) ：fn 关键字，因为匿名函数（Arrow Function）是在 PHP 7.4 中引入的。
+
 # Pinyin
 
-[![Test](https://github.com/overtrue/pinyin/actions/workflows/test.yml/badge.svg)](https://github.com/overtrue/pinyin/actions/workflows/test.yml)
+[![Test](https://github.com/askme-gpt/pinyin/actions/workflows/test.yml/badge.svg)](https://github.com/askme-gpt/pinyin/actions/workflows/test.yml)
 [![Latest Stable Version](https://poser.pugx.org/overtrue/pinyin/v/stable.svg)](https://packagist.org/packages/overtrue/pinyin) [![Total Downloads](https://poser.pugx.org/overtrue/pinyin/downloads.svg)](https://packagist.org/packages/overtrue/pinyin) [![Latest Unstable Version](https://poser.pugx.org/overtrue/pinyin/v/unstable.svg)](https://packagist.org/packages/overtrue/pinyin) [![License](https://poser.pugx.org/overtrue/pinyin/license.svg)](https://packagist.org/packages/overtrue/pinyin)
 
 :cn: 基于 [mozillazg/pinyin-data](https://github.com/mozillazg/pinyin-data) 词典的中文转拼音工具，更准确的支持多音字的汉字转拼音解决方案。
 
-[喜欢我的项目？点击这里支持我](https://github.com/sponsors/overtrue)
 
 ## 安装
 
 使用 Composer 安装:
 
 ```bash
-composer require overtrue/pinyin:^5.0
+composer require ysp/pinyin:^1.0
 ```
 
 ## 使用
@@ -27,7 +32,7 @@ composer require overtrue/pinyin:^5.0
 
 ### 返回值
 
-除了 `permalink` 返回字符串外，其它方法都返回集合类型 [`Ysp\Pinyin\Collection`](https://github.com/overtrue/pinyin/blob/master/src/Collection.php)：
+除了 `permalink` 返回字符串外，其它方法都返回集合类型 [`Ysp\Pinyin\Collection`](https://github.com/askme-gpt/pinyin/blob/master/src/Collection.php)：
 
 ```php
 use Ysp\Pinyin\Pinyin;
@@ -181,7 +186,7 @@ $pinyin->toArray();
 >
 > 当单字处理时由于多音字来自词频表中取得常用音，所以在词语环境下可能出现不正确的情况，建议使用多音字处理。
 
-更多使用请参考 [测试用例](https://github.com/overtrue/pinyin/blob/master/tests/PinyinTest.php)。
+更多使用请参考 [测试用例](https://github.com/askme-gpt/pinyin/blob/master/tests/PinyinTest.php)。
 
 ## v/yu/ü 的问题
 
@@ -233,43 +238,21 @@ php ./bin/pinyin --help
 #     -h, --help               显示帮助.
 ```
 
-## 在 Laravel 中使用
-
-独立的包在这里：[overtrue/laravel-pinyin](https://github.com/overtrue/laravel-pinyin)
-
 ## 中文简繁转换
 
-如何你有这个需求，也可以了解我的另一个包：[overtrue/php-opencc](https://github.com/overtrue/php-opencc)
+如何你有这个需求，也可以了解我的另一个包：[overtrue/php-opencc](https://github.com/askme-gpt/php-opencc)
 
 ## Contribution
 
 欢迎提意见及完善补充词库：
 
-- 单字拼音错误请添加到：[sources/pathes/chars.txt](https://github.com/overtrue/pinyin/blob/master/sources/pathes/chars.txt)；
-- 词语错误或补齐，请添加到：[sources/pathes/words.txt](https://github.com/overtrue/pinyin/blob/master/sources/pathes/words.txt)；
+- 单字拼音错误请添加到：[data/pathes/chars.txt](https://github.com/askme-gpt/pinyin/blob/master/data/pathes/chars.txt)；
+- 词语错误或补齐，请添加到：[data/pathes/words.txt](https://github.com/askme-gpt/pinyin/blob/master/data/pathes/words.txt)；
 
 ## 参考
 
 - [mozillazg/pinyin-data](https://github.com/mozillazg/pinyin-data)
-- [详细参考资料](https://github.com/overtrue/pinyin-resources)
-
-## :heart: Sponsor me
-
-[![Sponsor me](https://github.com/overtrue/overtrue/blob/master/sponsor-me.svg?raw=true)](https://github.com/sponsors/overtrue)
-
-如果你喜欢我的项目并想支持它，[点击这里 :heart:](https://github.com/sponsors/overtrue)
-
-## Project supported by JetBrains
-
-Many thanks to Jetbrains for kindly providing a license for me to work on this and other open-source projects.
-
-[![](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/?from=https://github.com/overtrue)
-
-## PHP 扩展包开发
-
-> 想知道如何从零开始构建 PHP 扩展包？
->
-> 请关注我的实战课程，我会在此课程中分享一些扩展开发经验 —— [《PHP 扩展包实战教程 - 从入门到发布》](https://learnku.com/courses/creating-package)
+- [详细参考资料](https://github.com/askme-gpt/pinyin-resources)
 
 # License
 

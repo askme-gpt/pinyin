@@ -6,11 +6,11 @@ class Converter
 {
     private const SEGMENTS_COUNT = 10;
 
-    private const WORDS_PATH = __DIR__.'/../data/words-%s.php';
+    private const WORDS_PATH = __DIR__ . '/../data/words-%s.php';
 
-    private const CHARS_PATH = __DIR__.'/../data/chars.php';
+    private const CHARS_PATH = __DIR__ . '/../data/chars.php';
 
-    private const SURNAMES_PATH = __DIR__.'/../data/surnames.php';
+    private const SURNAMES_PATH = __DIR__ . '/../data/surnames.php';
 
     public const TONE_STYLE_SYMBOL = 'symbol';
 
@@ -170,7 +170,7 @@ class Converter
     {
         // 把原有的数字和汉字分离，避免拼音转换时被误作声调
         $string = preg_replace_callback('~[a-z0-9_-]+~i', function ($matches) {
-            return "\t".$matches[0];
+            return "\t" . $matches[0];
         }, $string);
 
         // 过滤掉不保留的字符
@@ -210,13 +210,14 @@ class Converter
         foreach ($chars as $char) {
             if (isset($map[$char])) {
                 if ($polyphonic) {
-                    $pinyin = \array_map(fn ($pinyin) => $this->formatTone($pinyin, $this->toneStyle), $map[$char]);
+                    $pinyin = array_map(function ($pinyin) {
+                        return $this->formatTone($pinyin, $this->toneStyle);
+                    }, $map[$char]);
                     if ($this->polyphonicAsList) {
                         $items[] = [$char => $pinyin];
                     } else {
                         $items[$char] = $pinyin;
                     }
-
                 } else {
                     $items[$char] = $this->formatTone($map[$char][0], $this->toneStyle);
                 }
@@ -229,11 +230,14 @@ class Converter
     protected function convertSurname(string $name)
     {
         static $surnames = null;
-        $surnames ??= require self::SURNAMES_PATH;
+
+        if ($surnames === null) {
+            $surnames = require self::SURNAMES_PATH;
+        }
 
         foreach ($surnames as $surname => $pinyin) {
-            if (\str_starts_with($name, $surname)) {
-                return $pinyin.\mb_substr($name, \mb_strlen($surname));
+            if (strpos($name, $surname) === 0) {
+                return $pinyin . mb_substr($name, mb_strlen($surname));
             }
         }
 
@@ -268,7 +272,7 @@ class Converter
         ];
 
         foreach ($replacements as $unicode => $replacement) {
-            if (\str_contains($pinyin, $unicode)) {
+            if (strpos($pinyin, $unicode) !== false) {
                 $umlaut = $replacement[0];
 
                 // https://zh.wikipedia.org/wiki/%C3%9C
