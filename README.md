@@ -1,5 +1,9 @@
 # 来源
-这个包来源于：https://github.com/overtrue/pinyin ，为啥要做同个功能的轮子呢？因为源包不支持php8以前的版本，我有些老项目，升级比较麻烦，因此把代码稍微改了一下，以便php7.1以后的版本都能用。
+这个包来源于：https://github.com/overtrue/pinyin ，为啥要做同个功能的轮子呢？因为最新的源包（^5.0版本）不支持php8以前的版本，我有些老项目，升级比较麻烦，因此把代码稍微改了一下，以便php7.1以后的版本都能用。
+如果你的php版本在php8以上，请使用 https://github.com/overtrue/pinyin ，以便获取最新的更新，虽然我的这个包也能在php8的环境下跑，但是性能肯定没有官方的那么好，因为jit原因。
+
+如果遇到不兼容的问题，直接提issue，我会尽量在24小时之内处理完毕。
+
 # 主要改动
 -- str_contains ：在 PHP 7.1 中，str_contains 函数是不可用的，因为它是在 PHP 8.0 中引入的。
 -- fn ($pinyin) ：fn 关键字，因为匿名函数（Arrow Function）是在 PHP 7.4 中引入的。
