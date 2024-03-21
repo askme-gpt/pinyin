@@ -1,0 +1,26 @@
+{
+  "name": "ysp/pinyin",
+  "description": "Chinese Pinyin package for >=php7.1",
+  "type": "1",
+  "require": {
+    "php": ">=7.1"
+  },
+  "keywords": [
+    "chinese",
+    "pinyin",
+    "cn2pinyin"
+  ],
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Ysp\\Pinyin\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "ShuiPingYang",
+      "email": "1037547965@qq.com"
+    }
+  ],
+  "minimum-stability": "dev"
+}
